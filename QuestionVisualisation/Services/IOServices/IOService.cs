@@ -1,46 +1,35 @@
-﻿using QuestionVisualisation.Services.IOServices.IOManagers;
+﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
+using QuestionVisualisation.Services.IOServices.IOManagers;
 
 namespace QuestionVisualisation.Services.IOServices
 {
     public static class IOService
     {
-        private static List<IOManager> _managers = new()
+        private static readonly List<IOManager> _managers;
+
+        static IOService()
         {
-            new IOManagerJson(),
-        };
+            _managers = new List<IOManager>()
+            {
+                new IOManagerJson(),
+                new IOManagerTxt()
+            };
+        }
 
         private static IOManager GetManager(string filePath) 
             => _managers.FirstOrDefault(m => filePath.EndsWith(m.FileFormat)) ?? new DefaultIOManager();
+        
         public static IEnumerable<TReadObject> ReadFromFile<TReadObject>(string filePath)
             where TReadObject : class, new()
         {
-            /*var lines = File.ReadAllLines(filePath);
-            var properties = new TReadObject().GetType().GetProperties();
-            var result = new List<TReadObject>();
-
-            foreach (var line in lines)
-            {
-                if (line.Length == 0)
-                {
-                    continue;
-                }
-
-                var newObject = new TReadObject();
-                foreach (var (property, value) in properties.Zip(line.Split('*')))
-                {
-                    property.TrySetValue(newObject, value);
-                }
-
-                result.Add(newObject);
-            }
-            return result;*/
             return GetManager(filePath).ReadFromFile<TReadObject>(filePath) ?? Enumerable.Empty<TReadObject>();
         }
 
-        public static void WriteToFile<T>(string filePath, IEnumerable<T> values)
+        public static void WriteToFile<TWriteObject>(string filePath, IEnumerable<TWriteObject> values)
+            where TWriteObject : class, new()
+
         {
             GetManager(filePath).WriteToFile(filePath, values);
         }

@@ -7,12 +7,14 @@ namespace QuestionVisualisation.Services.IOServices.IOManagers
     {
         public string FileFormat => string.Empty;
 
-        public IEnumerable<T>? ReadFromFile<T>(string filePath)
+        public IEnumerable<TReadObject>? ReadFromFile<TReadObject>(string filePath)
+            where TReadObject : class, new()
         {
-            return Enumerable.Empty<T>();
+            return Enumerable.Empty<TReadObject>();
         }
 
-        public void WriteToFile<T>(string filePath, IEnumerable<T> values)
+        public void WriteToFile<TWriteObject>(string filePath, IEnumerable<TWriteObject> values)
+            where TWriteObject : class, new()
         {
             
         }

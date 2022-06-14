@@ -18,9 +18,9 @@ namespace QuestionVisualisation
         public QuizizzWindow()
         {
             InitializeComponent();
-            displayer = new (this);
-            SetController(displayer);
             QuizzWindowInstance = this;
+            displayer = new ();
+            SetController(displayer);
         }
 
         public void SetController(UserControl controller)

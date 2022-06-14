@@ -8,13 +8,15 @@ namespace QuestionVisualisation.Services.IOServices.IOManagers
     {
         public string FileFormat => ".json";
 
-        public IEnumerable<T>? ReadFromFile<T>(string filePath)
+        public IEnumerable<TReadObject>? ReadFromFile<TReadObject>(string filePath)
+            where TReadObject : class, new()
         {
             var allText = File.ReadAllText(filePath);
-            return JsonSerializer.Deserialize<IEnumerable<T>>(allText);
+            return JsonSerializer.Deserialize<IEnumerable<TReadObject>>(allText);
         }
 
-        public void WriteToFile<T>(string filePath, IEnumerable<T> values)
+        public void WriteToFile<TWriteObject>(string filePath, IEnumerable<TWriteObject> values)
+            where TWriteObject: class, new()
         {
            var result = JsonSerializer.Serialize(values);
            File.WriteAllText(filePath, result);

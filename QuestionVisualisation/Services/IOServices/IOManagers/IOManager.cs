@@ -6,8 +6,10 @@ namespace QuestionVisualisation.Services.IOServices.IOManagers
     {
         string FileFormat { get; }
 
-        IEnumerable<T>? ReadFromFile<T>(string filePath);
+        IEnumerable<TReadObject>? ReadFromFile<TReadObject>(string filePath)
+            where TReadObject : class, new();
 
-        void WriteToFile<T>(string filePath, IEnumerable<T> values);
+        void WriteToFile<TWriteObject>(string filePath, IEnumerable<TWriteObject> values)
+            where TWriteObject : class, new();
     }
 }
