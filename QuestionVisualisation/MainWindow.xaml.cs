@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Controls;
 using QuestionVisualisation.UserControls.TopicDisplay;
 
@@ -6,12 +7,20 @@ namespace QuestionVisualisation
 {
     public partial class QuizizzWindow : Window
     {
+        // TODO: craete list of user controls with interface IWindowPage;
         private TopicDisplayUserControl displayer;
+
+        // TODO: Add generic functions for 
+        // * getting needed window page
+        // * Setting current window page
+        public static QuizizzWindow QuizzWindowInstance { get; private set; } = new ();
+
         public QuizizzWindow()
         {
             InitializeComponent();
             displayer = new (this);
             SetController(displayer);
+            QuizzWindowInstance = this;
         }
 
         public void SetController(UserControl controller)

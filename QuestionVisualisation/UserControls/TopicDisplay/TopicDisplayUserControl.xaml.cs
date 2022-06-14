@@ -2,7 +2,6 @@
 using QuestionVisualisation.Services.IOServices;
 using QuestionVisualisation.UserControls.CustomObjects.ListItems;
 using QuestionVisualisation.UserControls.QuestionDisplay;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -12,10 +11,10 @@ namespace QuestionVisualisation.UserControls.TopicDisplay
 {
     public partial class TopicDisplayUserControl : UserControl
     {
-        public TopicDisplayUserControl(QuizizzWindow window)
+        public TopicDisplayUserControl()
         {
             InitializeComponent();
-            WindowContext = window;
+            WindowContext = QuizizzWindow.QuizzWindowInstance;
             LoadTopics();
         }
 
@@ -30,23 +29,20 @@ namespace QuestionVisualisation.UserControls.TopicDisplay
 
         private void LoadTopics()
         {
-            var filePath = Path.Combine(Environment.CurrentDirectory, Constants.DataFileName);
-            if (File.Exists(filePath))
+            if (File.Exists(Constants.InitialDirectory))
             {
-                topics = IOService.ReadFromFile<Topic>(filePath);
+                topics = IOService.ReadFromFile<Topic>(Constants.InitialDirectory);
                 DisplayTopics();
             }
             else
             {
-                IOService.WriteToFile(filePath, topics);
+                IOService.WriteToFile(Constants.InitialDirectory, topics);
             }
         }
 
         internal void OnClose()
         {
-            IOService.WriteToFile(
-                Path.Combine(Environment.CurrentDirectory, Constants.DataFileName),
-                Topics);
+            IOService.WriteToFile(Constants.InitialDirectory, Topics);
         }
 
         private void DisplayTopics()
@@ -75,7 +71,7 @@ namespace QuestionVisualisation.UserControls.TopicDisplay
             var allQuestions = Topics.SelectMany(t => t.Questions);
             if (allQuestions.Any())
             {
-                WindowContext.SetController(new QuestionDisplayUserControl(allQuestions, this, WindowContext));
+                QuizizzWindow.QuizzWindowInstance.SetController(new QuestionDisplayUserControl(allQuestions, this, QuizizzWindow.QuizzWindowInstance));
             }
         }
     }
