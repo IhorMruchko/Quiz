@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 
 namespace QuestionVisualisation.Objects
 {
-    [Serializable]
     public class Topic
     {
         public string Title { get; set; } = string.Empty;
 
-        public IEnumerable<Question> Questions { get; set; } = Enumerable.Empty<Question>();
+        public List<Question> Questions { get; set; } = new ();
     }
 }

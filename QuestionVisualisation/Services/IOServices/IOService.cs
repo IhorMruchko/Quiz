@@ -1,13 +1,19 @@
-﻿using QuestionVisualisation.Extensions;
-using QuestionVisualisation.Services.IOServices.IOManagers;
+﻿using QuestionVisualisation.Services.IOServices.IOManagers;
 using System.Collections.Generic;
-using System.IO;
+using System.Diagnostics;
 using System.Linq;
 
 namespace QuestionVisualisation.Services.IOServices
 {
     public static class IOService
     {
+        private static List<IOManager> _managers = new()
+        {
+            new IOManagerJson(),
+        };
+
+        private static IOManager GetManager(string filePath) 
+            => _managers.FirstOrDefault(m => filePath.EndsWith(m.FileFormat)) ?? new DefaultIOManager();
         public static IEnumerable<TReadObject> ReadFromFile<TReadObject>(string filePath)
             where TReadObject : class, new()
         {
@@ -31,12 +37,12 @@ namespace QuestionVisualisation.Services.IOServices
                 result.Add(newObject);
             }
             return result;*/
-            return new IOManagerJson().ReadFromFile<TReadObject>(filePath);
+            return GetManager(filePath).ReadFromFile<TReadObject>(filePath) ?? Enumerable.Empty<TReadObject>();
         }
 
         public static void WriteToFile<T>(string filePath, IEnumerable<T> values)
         {
-            new IOManagerJson().WriteToFile(filePath, values);
+            GetManager(filePath).WriteToFile(filePath, values);
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using QuestionVisualisation.Objects;
-using QuestionVisualisation.Services;
 using QuestionVisualisation.Services.IOServices;
+using QuestionVisualisation.UserControls.CustomObjects.ListItems;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -24,7 +24,7 @@ namespace QuestionVisualisation.UserControls.TopicDisplay
 
         public QuizizzWindow WindowContext { get; private set; }
         
-        private IEnumerable<Topic> Topics => _panel.Children.Cast<TopicProviderUserControl>()
+        private IEnumerable<Topic> Topics => _panel.Children.Cast<TopicListItem>()
             .Select(x => new Topic() { Title = x.TitleDisplay.Content.ToString() ?? "Title", Questions = x.QuestionList });
 
         private void LoadTopics()
@@ -52,7 +52,7 @@ namespace QuestionVisualisation.UserControls.TopicDisplay
         {
             foreach(var topic in topics)
             {
-                var button = new TopicProviderUserControl(this, topic.Title) { QuestionList = topic.Questions};
+                var button = new TopicListItem(this, topic.Title) { QuestionList = topic.Questions};
                 _panel.Children.Add(button);
             }
             TopicView.Content = _panel;
@@ -60,10 +60,10 @@ namespace QuestionVisualisation.UserControls.TopicDisplay
 
         private void AddButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            _panel.Children.Add(new TopicProviderUserControl(this, "New topic"));
+            _panel.Children.Add(new TopicListItem(this, "New topic"));
         }
 
-        internal void Remove(TopicProviderUserControl topicProviderUserControl)
+        internal void Remove(TopicListItem topicProviderUserControl)
         {
             _panel.Children.Remove(topicProviderUserControl);
         }

@@ -1,4 +1,4 @@
-﻿using QuestionVisualisation.Objects;
+﻿using QuestionVisualisation.UserControls.CustomObjects.ListItems;
 using QuestionVisualisation.UserControls.TopicDisplay;
 using System.Collections.Generic;
 using System.Windows.Controls;
@@ -7,31 +7,39 @@ namespace QuestionVisualisation.UserControls.QuestionsDisplay
 {
     public partial class QuestionsDisplayUserControl : UserControl
     {
+        public TopicListItem Context { get; }
+
         private readonly TopicDisplayUserControl _topic;
 
-        private readonly IEnumerable<Question> _questions;
+        private readonly StackPanel panel = new ();
 
-        public QuestionsDisplayUserControl(TopicDisplayUserControl topicReturnTo, IEnumerable<Question> questionsToDisplay)
+        public QuestionsDisplayUserControl(TopicListItem topicReturnTo)
         {
             InitializeComponent();
-            _topic = topicReturnTo;
-            _questions = questionsToDisplay;
+            Context = topicReturnTo;
+            _topic = topicReturnTo.Context;
             DisplayQuestions();
         }
 
         private void DisplayQuestions()
         {
-            var stackPanel = new StackPanel();
-            foreach (var q in _questions)
+            foreach (var q in Context.QuestionList)
             {
-                stackPanel.Children.Add(new Button() { Content = $"{q.QuestionTitle} - {q.Answer}" });
+                panel.Children.Add(new QuestionListItem(this, q));
             }
-            QuestionView.Content = stackPanel;
+            QuestionView.Content = panel;
         }
 
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             _topic.WindowContext.SetController(_topic);
+        }
+
+
+        internal void Remove(QuestionListItem questionListItem)
+        {
+            panel.Children.Remove(questionListItem);
+            Context.QuestionList.Remove(questionListItem.Question);
         }
     }
 }

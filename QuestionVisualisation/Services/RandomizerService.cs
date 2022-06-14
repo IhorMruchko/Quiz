@@ -13,14 +13,19 @@ namespace QuestionVisualisation.Services
 
         public Question? SelectedQuestion { get; set; }
 
-        public List<Question> AnsweredQuestions { get; set; } = new ();
-        public string Result => $"{AnsweredQuestions.Count(x => x.IsCorrectAnswered)}/{AnsweredQuestions.Count}";
+        public List<AnsweredQuestion> AnsweredQuestions { get; set; } = new ();
+        
+        public string Result => $"{AnsweredQuestions.Count(x => x.IsCorrectlyAnswered)}/{AnsweredQuestions.Count}";
 
-        public Question Next()
+        public Question Next(bool markOnPreviouseQuestion)
         {
             if (SelectedQuestion is not null)
             {
-                AnsweredQuestions.Add(SelectedQuestion);
+                AnsweredQuestions.Add(new AnsweredQuestion()
+                { 
+                    Question = SelectedQuestion, 
+                    IsCorrectlyAnswered = markOnPreviouseQuestion
+                });
                 LoadedQuesions.Remove(SelectedQuestion);
             }
 

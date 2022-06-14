@@ -25,7 +25,7 @@
 
         private void Mark(bool value)
         {
-            Context!.QuestionManager.SelectedQuestion!.IsCorrectAnswered = value;
+            Context!.QuestionManager.Next(value);
             Context!.AnswerPlaceHolder.Text = string.Empty;
             Context!.ChangeState(
                 Context!.QuestionManager.LoadedQuesions.Count == 1

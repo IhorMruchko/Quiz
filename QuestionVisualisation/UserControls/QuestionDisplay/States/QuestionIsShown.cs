@@ -19,11 +19,10 @@
 
         protected override void UpdateContext()
         {
-            var current = Context!.QuestionManager.Next();
             Context!.ShowAnswerButton.IsEnabled = true;
             Context!.WrongAnswerButton.IsEnabled = false;
             Context!.CorrectAnswerButton.IsEnabled = false;
-            Context!.QuestionPlaceholder.Text = current.QuestionTitle;
+            Context!.QuestionPlaceholder.Text = Context!.QuestionManager.SelectedQuestion!.QuestionTitle;
             Context!.AnswerPlaceHolder.Text = string.Empty;
         }
     }

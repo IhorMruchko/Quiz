@@ -10,11 +10,7 @@ namespace QuestionVisualisation
         public QuizizzWindow()
         {
             InitializeComponent();
-            //TODO: Add more content pages
-            // * View topic page
-            // * Manage question page
-            // * Quizz page
-            displayer = new TopicDisplayUserControl(this);
+            displayer = new (this);
             SetController(displayer);
         }
 

@@ -6,7 +6,9 @@ namespace QuestionVisualisation.Services.IOServices.IOManagers
 {
     public class IOManagerJson : IOManager
     {
-        public IEnumerable<T> ReadFromFile<T>(string filePath)
+        public string FileFormat => ".json";
+
+        public IEnumerable<T>? ReadFromFile<T>(string filePath)
         {
             var allText = File.ReadAllText(filePath);
             return JsonSerializer.Deserialize<IEnumerable<T>>(allText);

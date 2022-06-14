@@ -6,10 +6,6 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="Resources\Images\delete-icon.png" />
-    <None Remove="Resources\Images\edit-icon.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Images\delete-icon.png" />
     <Resource Include="Resources\Images\edit-icon.png" />
   </ItemGroup>
