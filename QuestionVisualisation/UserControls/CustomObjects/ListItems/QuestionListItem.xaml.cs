@@ -1,4 +1,5 @@
-﻿using QuestionVisualisation.Extensions;
+﻿using QuestionVisualisation.Dialogs;
+using QuestionVisualisation.Extensions;
 using QuestionVisualisation.Objects;
 using QuestionVisualisation.UserControls.QuestionsDisplay;
 using System.Windows;
@@ -21,43 +22,38 @@ namespace QuestionVisualisation.UserControls.CustomObjects.ListItems
 
         public QuestionsDisplayUserControl Context { get; set; }
 
+        public void EditIcon_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            var questionEditor = new EditQuestionDialog()
+            {
+                QuestionTitle = Question.QuestionTitle,
+                QuestionAnswer = Question.Answer
+            };
+
+            var dialogResult = questionEditor.ShowDialog();
+            if (dialogResult == true)
+            {
+                var questionTitle = questionEditor.QuestionTitle.Equals(string.Empty)
+                    ? Question.QuestionTitle
+                    : questionEditor.QuestionTitle;
+
+                var answer = questionEditor.QuestionAnswer.Equals(string.Empty)
+                    ? Question.Answer
+                    : questionEditor.QuestionAnswer;
+
+                Question.QuestionTitle = questionTitle;
+                Question.Answer = answer;
+            }
+            TitleDisplay.Content = Question.QuestionTitle;
+        }
+
         private void TextDisplay_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                
-            }
-        }
-
-        private void TitleChanger_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
-            {
-                ChangeTitle();
-            }
-        }
-
-        private void TitleChanger_LostFocus(object sender, RoutedEventArgs e)
-        {
-            ChangeTitle();
-        }
-
-        private void ChangeTitle()
-        {
-            TitleDisplay.Content = TitleChanger.Text ?? TitleDisplay.Content;
-            TitleChanger.Visibility = Visibility.Hidden;
-            Question.QuestionTitle = TitleDisplay.Content.ToString() ?? "Title";
-        }
-
-
-        private void EditIcon_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            TitleChanger.Visibility = Visibility.Visible;
-            TitleChanger.Text = TitleDisplay.Content.ToString();
+            EditIcon_MouseDown(sender, e);
         }
 
         private void DeleteIcon_MouseDown(object sender, MouseButtonEventArgs e)
-        {
+        {            
             var result = MessageBox.Show("Do you want to delete this item?", "Ensure deletion", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes)
             {
@@ -83,16 +79,6 @@ namespace QuestionVisualisation.UserControls.CustomObjects.ListItems
         private void DeleteIcon_MouseLeave(object sender, MouseEventArgs e)
         {
             DeleteIcon.ChangeColors(Constants.Colors.White);
-        }
-
-        private void EditIcon_MouseEnter(object sender, MouseEventArgs e)
-        {
-            EditIcon.ChangeColors(Constants.Colors.Purple);
-        }
-
-        private void EditIcon_MouseLeave(object sender, MouseEventArgs e)
-        {
-            EditIcon.ChangeColors(Constants.Colors.White);
         }
     }
 }

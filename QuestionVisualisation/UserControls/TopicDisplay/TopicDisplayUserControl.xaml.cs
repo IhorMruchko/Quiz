@@ -1,6 +1,7 @@
 ﻿using QuestionVisualisation.Objects;
 using QuestionVisualisation.Services.IOServices;
 using QuestionVisualisation.UserControls.CustomObjects.ListItems;
+using QuestionVisualisation.UserControls.QuestionDisplay;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -61,11 +62,21 @@ namespace QuestionVisualisation.UserControls.TopicDisplay
         private void AddButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             _panel.Children.Add(new TopicListItem(this, "New topic"));
+            TopicView.Content = _panel;
         }
 
         internal void Remove(TopicListItem topicProviderUserControl)
         {
             _panel.Children.Remove(topicProviderUserControl);
+        }
+
+        private void StartButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            var allQuestions = Topics.SelectMany(t => t.Questions);
+            if (allQuestions.Any())
+            {
+                WindowContext.SetController(new QuestionDisplayUserControl(allQuestions, this, WindowContext));
+            }
         }
     }
 }

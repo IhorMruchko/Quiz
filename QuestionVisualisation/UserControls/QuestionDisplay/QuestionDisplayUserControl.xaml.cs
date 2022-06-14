@@ -1,9 +1,8 @@
-﻿using Microsoft.Win32;
-using QuestionVisualisation.Objects;
+﻿using QuestionVisualisation.Objects;
 using QuestionVisualisation.Services;
-using QuestionVisualisation.Services.IOServices;
 using QuestionVisualisation.UserControls.QuestionDisplay.KeyPressedEventHandlers;
 using QuestionVisualisation.UserControls.QuestionDisplay.States;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -15,13 +14,19 @@ namespace QuestionVisualisation.UserControls.QuestionDisplay
     {
         private QuestionDisplayUserControlState _state = new ReadFromFile();
 
-        public QuestionDisplayUserControl()
+        public QuestionDisplayUserControl(IEnumerable<Question> questions, UserControl context, QuizizzWindow window)
         {
             InitializeComponent();
-            ChangeState(new ReadFromFile());
+            Context = context;
+            Window = window;
+            QuestionManager.LoadedQuesions = questions.ToList();
+            QuestionManager.Next(false);
+            ChangeState(new QuestionIsShown());
         }
 
         public RandomizerService QuestionManager { get; set; } = new();
+        public UserControl Context { get; private set; }
+        public QuizizzWindow Window { get; private set; }
 
         public void ChangeState(QuestionDisplayUserControlState newState)
         {
@@ -50,22 +55,9 @@ namespace QuestionVisualisation.UserControls.QuestionDisplay
             _state.ShowResults();
         }
 
-        public void OpenButton_Click(object sender, RoutedEventArgs e)
+        private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            var openFileDialog = new OpenFileDialog()
-            {
-                Title = "Open question files",
-                Filter = "Text (*.txt)|*.txt;",
-            };
-
-            if (openFileDialog.ShowDialog() == true)
-            {
-                QuestionManager = new RandomizerService();
-                QuestionManager.LoadedQuesions = IOService.ReadFromFile<Question>(openFileDialog.FileName).ToList();
-                ChangeState(QuestionManager.LoadedQuesions.Count == 0
-                    ? new ReadFromFile()
-                    : new QuestionIsShown());
-            }
+            Window.SetController(Context);
         }
     }
 }

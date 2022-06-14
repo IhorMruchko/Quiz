@@ -52,10 +52,9 @@
                 Grid.Column="1"
                 Content="Show answer"
                 Click="ShowAnswerButton_Click"/>
-        <Button x:Name="OpenButton"
-                Grid.Row="2"
+        <Button Grid.Row="2"
                 Grid.Column="3"
-                Content="Open"
-                Click="OpenButton_Click"/>
+                Content="Back"
+                Click="BackButton_Click"/>
     </Grid>
 </UserControl>

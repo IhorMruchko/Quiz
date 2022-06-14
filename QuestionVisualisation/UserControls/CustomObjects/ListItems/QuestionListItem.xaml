@@ -12,31 +12,12 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="9*"/>
             <ColumnDefinition Width="1.25*"/>
-            <ColumnDefinition Width="1.25*"/>
         </Grid.ColumnDefinitions>
         <Label x:Name="TitleDisplay"
                MouseEnter="TitleDisplay_MouseEnter"
                MouseLeave="TitleDisplay_MouseLeave"
                MouseDown="TextDisplay_MouseDown"
                VerticalContentAlignment="Center"/>
-        <TextBox x:Name="TitleChanger"
-                 Visibility="Hidden"
-                 BorderThickness="0"
-                 VerticalContentAlignment="Center"
-                 LostFocus="TitleChanger_LostFocus"
-                 KeyDown="TitleChanger_KeyDown">
-        </TextBox>
-        <Label x:Name="EditIcon"  
-               Grid.Column="1"
-               MouseEnter="EditIcon_MouseEnter"
-               MouseLeave="EditIcon_MouseLeave"
-               MouseDown="EditIcon_MouseDown"
-               HorizontalContentAlignment="Center"
-               VerticalAlignment="Center">
-            <Image Grid.Column="1" 
-                   Source="/Resources/Images/edit-icon.png"               
-                   Height="25"/>
-        </Label>
         <Label x:Name="DeleteIcon"
                Grid.Column="2"
                MouseEnter="DeleteIcon_MouseEnter"

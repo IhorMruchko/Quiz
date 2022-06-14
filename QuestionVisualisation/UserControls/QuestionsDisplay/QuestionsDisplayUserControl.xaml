@@ -12,9 +12,21 @@
         </Grid.RowDefinitions>
         <ScrollViewer x:Name="QuestionView"/>
 
-        <Button Grid.Row="1"
-                Content="Back"
-                Click="Button_Click"/>
-
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Content="Back"
+                    Grid.Column="0"
+                    Click="Button_Click"/>
+            <Button Content="Add"
+                    Grid.Column="1"
+                    Click="Add_Click"/>
+            <Button Content="Start test"
+                    Grid.Column="2"
+                    Click="StartTest"/>
+        </Grid>
     </Grid>
 </UserControl>

@@ -13,9 +13,19 @@
         </Grid.RowDefinitions>
         <ScrollViewer x:Name="TopicView">
         </ScrollViewer>
-        <Button x:Name="AddButton"
+        
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="AddButton"
                 Content="Add"
-                Grid.Row="1"
                 Click="AddButton_Click"/>
+            <Button x:Name="StartButton"
+                    Content="Start test"
+                    Grid.Column="1"
+                    Click="StartButton_Click"/>
+        </Grid>
     </Grid>
 </UserControl>

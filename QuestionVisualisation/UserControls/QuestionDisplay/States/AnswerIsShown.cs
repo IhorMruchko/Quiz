@@ -28,7 +28,7 @@
             Context!.QuestionManager.Next(value);
             Context!.AnswerPlaceHolder.Text = string.Empty;
             Context!.ChangeState(
-                Context!.QuestionManager.LoadedQuesions.Count == 1
+                Context!.QuestionManager.LoadedQuesions.Count == 0
                 ? new AllQuestionAnswered()
                 : new QuestionIsShown());
         }

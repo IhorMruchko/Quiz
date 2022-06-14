@@ -1,7 +1,13 @@
-﻿using QuestionVisualisation.UserControls.CustomObjects.ListItems;
+﻿using QuestionVisualisation.Dialogs;
+using QuestionVisualisation.Objects;
+using QuestionVisualisation.Services;
+using QuestionVisualisation.UserControls.CustomObjects.ListItems;
+using QuestionVisualisation.UserControls.QuestionDisplay;
 using QuestionVisualisation.UserControls.TopicDisplay;
+using System;
 using System.Collections.Generic;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace QuestionVisualisation.UserControls.QuestionsDisplay
 {
@@ -40,6 +46,32 @@ namespace QuestionVisualisation.UserControls.QuestionsDisplay
         {
             panel.Children.Remove(questionListItem);
             Context.QuestionList.Remove(questionListItem.Question);
+        }
+
+        private void Add_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            var addQuestionDialog = new AddQuestionDialog();
+            if (addQuestionDialog.ShowDialog() == true)
+            {
+                var question = new Question()
+                {
+                    QuestionTitle = addQuestionDialog.QuestionTitle,
+                    Answer = addQuestionDialog.QuestionAnswer
+                };
+                
+                panel.Children.Add(new QuestionListItem(this, question));
+                Context.QuestionList.Add(question);
+            }
+            
+        }
+
+        private void StartTest(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (Context.QuestionList.Count == 0)
+            {
+                return;
+            }
+            Context.Context.WindowContext.SetController(new QuestionDisplayUserControl(Context.QuestionList, this, Context.Context.WindowContext));
         }
     }
 }
