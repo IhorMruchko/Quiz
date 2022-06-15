@@ -17,6 +17,7 @@
                MouseEnter="TitleDisplay_MouseEnter"
                MouseLeave="TitleDisplay_MouseLeave"
                MouseDown="TextDisplay_MouseDown"
+               Content="{Binding ElementName=Question, Path=QuestionTitle, Mode=TwoWay}"
                VerticalContentAlignment="Center"/>
         <Label x:Name="DeleteIcon"
                Grid.Column="2"

@@ -2,6 +2,7 @@
 using QuestionVisualisation.Services.IOServices;
 using QuestionVisualisation.UserControls.CustomObjects.ListItems;
 using QuestionVisualisation.UserControls.QuestionDisplay;
+using QuestionVisualisation.UserControls.QuestionDisplay.States;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -14,15 +15,12 @@ namespace QuestionVisualisation.UserControls.TopicDisplay
         public TopicDisplayUserControl()
         {
             InitializeComponent();
-            WindowContext = QuizizzWindow.QuizzWindowInstance;
             LoadTopics();
         }
 
         private IEnumerable<Topic> topics = Enumerable.Empty<Topic>();
 
         private readonly StackPanel _panel = new ();
-
-        public QuizizzWindow WindowContext { get; private set; }
         
         private IEnumerable<Topic> Topics => _panel.Children.Cast<TopicListItem>()
             .Select(x => new Topic() { Title = x.TitleDisplay.Content.ToString() ?? "Title", Questions = x.QuestionList });
@@ -49,17 +47,16 @@ namespace QuestionVisualisation.UserControls.TopicDisplay
         {
             foreach(var topic in topics)
             {
-                var button = new TopicListItem(this, topic.Title) { QuestionList = topic.Questions};
-                _panel.Children.Add(button);
+                _panel.Children.Add(new TopicListItem(topic.Title) { QuestionList = topic.Questions });
             }
             TopicView.Content = _panel;
         }
 
         private void AddButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            _panel.Children.Add(new TopicListItem(this, "New topic"));
+            _panel.Children.Add(new TopicListItem("New topic"));
             TopicView.Content = _panel;
-        }
+        } 
 
         internal void Remove(TopicListItem topicProviderUserControl)
         {
@@ -71,7 +68,12 @@ namespace QuestionVisualisation.UserControls.TopicDisplay
             var allQuestions = Topics.SelectMany(t => t.Questions);
             if (allQuestions.Any())
             {
-                QuizizzWindow.QuizzWindowInstance.SetController(new QuestionDisplayUserControl(allQuestions, this, QuizizzWindow.QuizzWindowInstance));
+                QuizizzWindow.SetController<QuestionDisplayUserControl>(x =>
+                {
+                    x.QuestionManager.LoadedQuesions = allQuestions.ToList();
+                    x.QuestionManager.Next(false);
+                    x.ChangeState(new QuestionIsShown());
+                });
             }
         }
     }

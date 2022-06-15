@@ -1,9 +1,7 @@
-﻿using QuestionVisualisation.Objects;
-using QuestionVisualisation.Services;
+﻿using QuestionVisualisation.Services;
 using QuestionVisualisation.UserControls.QuestionDisplay.KeyPressedEventHandlers;
 using QuestionVisualisation.UserControls.QuestionDisplay.States;
-using System.Collections.Generic;
-using System.Linq;
+using QuestionVisualisation.UserControls.TopicDisplay;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -14,19 +12,12 @@ namespace QuestionVisualisation.UserControls.QuestionDisplay
     {
         private QuestionDisplayUserControlState _state = new ReadFromFile();
 
-        public QuestionDisplayUserControl(IEnumerable<Question> questions, UserControl context, QuizizzWindow window)
+        public QuestionDisplayUserControl()
         {
             InitializeComponent();
-            Context = context;
-            Window = window;
-            QuestionManager.LoadedQuesions = questions.ToList();
-            QuestionManager.Next(false);
-            ChangeState(new QuestionIsShown());
         }
 
         public RandomizerService QuestionManager { get; set; } = new();
-        public UserControl Context { get; private set; }
-        public QuizizzWindow Window { get; private set; }
 
         public void ChangeState(QuestionDisplayUserControlState newState)
         {
@@ -57,7 +48,7 @@ namespace QuestionVisualisation.UserControls.QuestionDisplay
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            Window.SetController(Context);
+            QuizizzWindow.SetController<TopicDisplayUserControl>();
         }
     }
 }

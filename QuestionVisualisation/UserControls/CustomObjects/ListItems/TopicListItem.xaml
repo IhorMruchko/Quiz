@@ -7,7 +7,8 @@
              BorderBrush="Black"
              BorderThickness="1px"
              Margin="0 0 0 1"
-             d:DesignHeight="100" d:DesignWidth="800">
+             d:DesignHeight="100"
+             MinHeight="25" d:DesignWidth="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="9*"/>
@@ -24,8 +25,8 @@
                  BorderThickness="0"
                  VerticalContentAlignment="Center"
                  LostFocus="TitleChanger_LostFocus"
-                 KeyDown="TitleChanger_KeyDown">
-        </TextBox>
+                 KeyDown="TitleChanger_KeyDown"/>
+        
         <Label x:Name="EditIcon"  
                Grid.Column="1"
                MouseEnter="EditIcon_MouseEnter"

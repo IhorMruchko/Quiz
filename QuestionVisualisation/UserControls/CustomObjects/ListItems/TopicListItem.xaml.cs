@@ -7,92 +7,92 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace QuestionVisualisation.UserControls.CustomObjects.ListItems
+namespace QuestionVisualisation.UserControls.CustomObjects.ListItems;
+
+public partial class TopicListItem : UserControl
 {
-    public partial class TopicListItem : UserControl
+    public TopicListItem(string title)
     {
-        public TopicListItem(TopicDisplayUserControl context, string title)
+        InitializeComponent();
+        TitleDisplay.Content = title;
+    }
+
+    public List<Question> QuestionList { get; internal set; } = new();
+
+    private void TextDisplay_MouseDown(object sender, MouseButtonEventArgs e)
+    {
+        if (e.LeftButton == MouseButtonState.Pressed)
         {
-            InitializeComponent();
-            Context = context;
-            TitleDisplay.Content = title;
-        }
-
-        public List<Question> QuestionList { get; internal set; } = new ();
-
-        public TopicDisplayUserControl Context { get; protected set; }
-
-        private void TextDisplay_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed)
+            QuizizzWindow.SetController<QuestionsDisplayUserControl>(x =>
             {
-                Context.WindowContext.SetController(new QuestionsDisplayUserControl(this));
-            }
+                x.Context = this;
+                x.DisplayQuestions();
+            });
         }
+    }
 
-        private void TitleChanger_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
-            {
-                ChangeTitle();
-            }
-        }
-
-        private void TitleChanger_LostFocus(object sender, RoutedEventArgs e)
+    private void TitleChanger_KeyDown(object sender, KeyEventArgs e)
+    {
+        if (e.Key == Key.Enter)
         {
             ChangeTitle();
         }
+    }
 
-        private void ChangeTitle()
+    private void TitleChanger_LostFocus(object sender, RoutedEventArgs e)
+    {
+        ChangeTitle();
+    }
+
+    private void ChangeTitle()
+    {
+        TitleDisplay.Content = TitleChanger.Text ?? TitleDisplay.Content;
+        TitleChanger.Visibility = Visibility.Hidden;
+    }
+
+
+    private void EditIcon_MouseDown(object sender, MouseButtonEventArgs e)
+    {
+        TitleChanger.Visibility = Visibility.Visible;
+        TitleChanger.Text = TitleDisplay.Content.ToString();
+    }
+
+    private void DeleteIcon_MouseDown(object sender, MouseButtonEventArgs e)
+    {
+        var result = MessageBox.Show("Do you want to delete this item?", "Ensure deletion", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+        if (result == MessageBoxResult.Yes)
         {
-            TitleDisplay.Content = TitleChanger.Text ?? TitleDisplay.Content;
-            TitleChanger.Visibility = Visibility.Hidden;
+            QuizizzWindow.GetController<TopicDisplayUserControl>()?.Remove(this);
         }
+    }
 
+    private void TitleDisplay_MouseEnter(object sender, MouseEventArgs e)
+    {
+        TitleDisplay.ChangeColors(Constants.Colors.Black, Constants.Colors.White);
+    }
 
-        private void EditIcon_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            TitleChanger.Visibility = Visibility.Visible;
-            TitleChanger.Text = TitleDisplay.Content.ToString();
-        }
+    private void TitleDisplay_MouseLeave(object sender, MouseEventArgs e)
+    {
+        TitleDisplay.ChangeColors(Constants.Colors.White, Constants.Colors.Black);
+    }
 
-        private void DeleteIcon_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            var result = MessageBox.Show("Do you want to delete this item?", "Ensure deletion", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-            if (result == MessageBoxResult.Yes)
-            {
-                Context.Remove(this);
-            }
-        }
+    private void DeleteIcon_MouseEnter(object sender, MouseEventArgs e)
+    {
+        DeleteIcon.ChangeColors(Constants.Colors.LightRed);
+    }
 
-        private void TitleDisplay_MouseEnter(object sender, MouseEventArgs e)
-        {
-            TitleDisplay.ChangeColors(Constants.Colors.Black, Constants.Colors.White);
-        }
+    private void DeleteIcon_MouseLeave(object sender, MouseEventArgs e)
+    {
+        DeleteIcon.ChangeColors(Constants.Colors.White);
+    }
 
-        private void TitleDisplay_MouseLeave(object sender, MouseEventArgs e)
-        {
-            TitleDisplay.ChangeColors(Constants.Colors.White, Constants.Colors.Black);
-        }
+    private void EditIcon_MouseEnter(object sender, MouseEventArgs e)
+    {
+        EditIcon.ChangeColors(Constants.Colors.Purple);
+    }
 
-        private void DeleteIcon_MouseEnter(object sender, MouseEventArgs e)
-        {
-            DeleteIcon.ChangeColors(Constants.Colors.LightRed);
-        }
-
-        private void DeleteIcon_MouseLeave(object sender, MouseEventArgs e)
-        {
-            DeleteIcon.ChangeColors(Constants.Colors.White);
-        }
-
-        private void EditIcon_MouseEnter(object sender, MouseEventArgs e)
-        {
-            EditIcon.ChangeColors(Constants.Colors.Purple);
-        }
-
-        private void EditIcon_MouseLeave(object sender, MouseEventArgs e)
-        {
-            EditIcon.ChangeColors(Constants.Colors.White);
-        }
+    private void EditIcon_MouseLeave(object sender, MouseEventArgs e)
+    {
+        EditIcon.ChangeColors(Constants.Colors.White);
     }
 }
