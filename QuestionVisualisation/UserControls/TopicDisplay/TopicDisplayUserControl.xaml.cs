@@ -16,6 +16,7 @@ namespace QuestionVisualisation.UserControls.TopicDisplay
         {
             InitializeComponent();
             LoadTopics();
+            TopicView.Content = _panel;
         }
 
         private IEnumerable<Topic> topics = Enumerable.Empty<Topic>();
@@ -49,13 +50,11 @@ namespace QuestionVisualisation.UserControls.TopicDisplay
             {
                 _panel.Children.Add(new TopicListItem(topic.Title) { QuestionList = topic.Questions });
             }
-            TopicView.Content = _panel;
         }
 
         private void AddButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             _panel.Children.Add(new TopicListItem("New topic"));
-            TopicView.Content = _panel;
         } 
 
         internal void Remove(TopicListItem topicProviderUserControl)

@@ -14,6 +14,7 @@ namespace QuestionVisualisation.UserControls.CustomObjects.ListItems
         {
             Question = question;
             InitializeComponent();
+            TitleDisplay.Content = Question.QuestionTitle;
         }
 
         public Question Question { get; set; } = new Question();

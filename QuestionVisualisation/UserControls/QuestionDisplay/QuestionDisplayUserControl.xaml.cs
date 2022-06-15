@@ -48,6 +48,7 @@ namespace QuestionVisualisation.UserControls.QuestionDisplay
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
+            QuestionManager = new RandomizerService();
             QuizizzWindow.SetController<TopicDisplayUserControl>();
         }
     }

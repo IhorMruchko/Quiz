@@ -22,13 +22,14 @@ namespace QuestionVisualisation.UserControls.QuestionsDisplay
         {
             foreach (var q in Context!.QuestionList)
             {
-                panel.Children.Add(new QuestionListItem(q));
+                panel.Children.Add(new QuestionListItem(q) { Context = this});
             }
             QuestionView.Content = panel;
         }
 
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+            panel.Children.Clear();
             QuizizzWindow.SetController<TopicDisplayUserControl>();
         }
 
