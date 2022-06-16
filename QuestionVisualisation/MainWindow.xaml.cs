@@ -1,15 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using QuestionVisualisation.UserControls;
 using QuestionVisualisation.UserControls.TopicDisplay;
 
 namespace QuestionVisualisation
 {
     public partial class QuizizzWindow : Window
     {
-        private static List<UserControl> _windowPages = new ();
+        public static Stack<UserControl> OppenedPagesHistory { get; private set; } = new ();
+        
+        private static UserControl CurrentUserControl { get; set; } = new TopicDisplayUserControl();
 
         public static QuizizzWindow QuizzWindowInstance { get; private set; } = new ();
 
@@ -17,41 +19,26 @@ namespace QuestionVisualisation
         {
             InitializeComponent();
             QuizzWindowInstance = this;
-            SetController<TopicDisplayUserControl>();
+            SetController(CurrentUserControl);
         }
 
-        public static TControl? GetController<TControl>()
-            where TControl : UserControl, new()
+        public static TContol? GetController<TContol>()
+            where TContol : UserControl, new()
         {
-            var result = _windowPages.FirstOrDefault(x => x.GetType() == typeof(TControl));
-            return result as TControl;
+            return OppenedPagesHistory.LastOrDefault(x => x.GetType() == typeof(TContol)) as TContol;
         }
 
-        public static TControl AddController<TControl>(Action<TControl>? controllerConfiguration = null)
-            where TControl: UserControl, new()
+        public static void SetController(UserControl controller)
         {
-            var control = GetController<TControl>();
-            if (control is not null)
-            {
-                _windowPages.Remove(control);
-            }
-            else
-            {
-                control = new TControl();
-            }
-
-            controllerConfiguration?.Invoke(control);
-            _windowPages.Add(control);
-            return control;
+            OppenedPagesHistory.Push(CurrentUserControl);
+            ((IWindowPage)CurrentUserControl).ConfigureWindowOnEnd(QuizzWindowInstance);
+            CurrentUserControl = controller;
+            ((IWindowPage)controller).ConfigureWindowOnStart(QuizzWindowInstance);
+            QuizzWindowInstance.WindowContent.Content = CurrentUserControl;
         }
 
-        public static void SetController<TControl>(Action<TControl>? control = null)
-            where TControl : UserControl, new()
-        {
 
-            QuizzWindowInstance.WindowContent.Content = AddController(control);
-        }
-
+        // TODO: implement keydown event for pages
         private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             // ((QuestionDisplayUserControl)WindowContent.Content).QuestionDisplay_KeyDown(sender, e);
@@ -59,7 +46,20 @@ namespace QuestionVisualisation
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            GetController<TopicDisplayUserControl>()!.OnClose();
+            GetController<TopicDisplayUserControl>()?.OnClose();
+        }
+
+        public void BackButton_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (OppenedPagesHistory.Peek().GetType() == typeof(TopicDisplayUserControl) && OppenedPagesHistory.Count <= 1)
+            {
+                return;
+            }
+            var content = OppenedPagesHistory.Pop();
+            ((IWindowPage)CurrentUserControl).ConfigureWindowOnEnd(QuizzWindowInstance);
+            CurrentUserControl = content;
+            ((IWindowPage)CurrentUserControl).ConfigureWindowOnStart(QuizzWindowInstance);
+            QuizzWindowInstance.WindowContent.Content = CurrentUserControl;
         }
     }
 }

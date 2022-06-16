@@ -1,5 +1,6 @@
 ﻿using QuestionVisualisation.Objects;
 using QuestionVisualisation.Services.IOServices;
+using QuestionVisualisation.UserControls.CustomObjects.Buttons;
 using QuestionVisualisation.UserControls.CustomObjects.ListItems;
 using QuestionVisualisation.UserControls.QuestionDisplay;
 using QuestionVisualisation.UserControls.QuestionDisplay.States;
@@ -10,7 +11,7 @@ using System.Windows.Controls;
 
 namespace QuestionVisualisation.UserControls.TopicDisplay
 {
-    public partial class TopicDisplayUserControl : UserControl
+    public partial class TopicDisplayUserControl : UserControl, IWindowPage
     {
         public TopicDisplayUserControl()
         {
@@ -39,7 +40,7 @@ namespace QuestionVisualisation.UserControls.TopicDisplay
             }
         }
 
-        internal void OnClose()
+        public void OnClose()
         {
             IOService.WriteToFile(Constants.InitialDirectory, Topics);
         }
@@ -52,11 +53,6 @@ namespace QuestionVisualisation.UserControls.TopicDisplay
             }
         }
 
-        private void AddButton_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            _panel.Children.Add(new TopicListItem("New topic"));
-        } 
-
         internal void Remove(TopicListItem topicProviderUserControl)
         {
             _panel.Children.Remove(topicProviderUserControl);
@@ -67,13 +63,28 @@ namespace QuestionVisualisation.UserControls.TopicDisplay
             var allQuestions = Topics.SelectMany(t => t.Questions);
             if (allQuestions.Any())
             {
-                QuizizzWindow.SetController<QuestionDisplayUserControl>(x =>
-                {
-                    x.QuestionManager.LoadedQuesions = allQuestions.ToList();
-                    x.QuestionManager.Next(false);
-                    x.ChangeState(new QuestionIsShown());
-                });
+                QuizizzWindow.SetController(new QuestionDisplayUserControl(allQuestions));
             }
+        }
+
+        private void AddButton_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            _panel.Children.Add(new TopicListItem("New topic"));
+        }
+
+        public void ConfigureWindowOnStart(QuizizzWindow window)
+        {
+            var addButton = new AddButton();
+            var startButton = new StartButton();
+            addButton.MouseDown += AddButton_MouseDown;
+            startButton.MouseDown += StartButton_Click;
+            window.LowerBar.Children.Add(addButton);
+            window.LowerBar.Children.Add(startButton);
+        }
+
+        public void ConfigureWindowOnEnd(QuizizzWindow window)
+        {
+            window.LowerBar.Children.Clear();
         }
     }
 }

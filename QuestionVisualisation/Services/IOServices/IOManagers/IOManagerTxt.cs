@@ -27,7 +27,7 @@ namespace QuestionVisualisation.Services.IOServices.IOManagers
                 var newObject = new TReadObject();
                 foreach (var (property, value) in properties.Zip(line.Split('*')))
                 {
-                    property.TrySetValue(newObject, value);
+                    property.TrySetValue(newObject, value.Trim());
                 }
 
                 result.Add(newObject);

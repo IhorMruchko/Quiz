@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="QuestionVisualisation.UserControls.CustomObjects.Buttons.DownloadButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:QuestionVisualisation.UserControls.CustomObjects.Buttons"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Label x:Name="OpenPlaceholder"  
+               MouseEnter="OpenPlaceholder_MouseEnter"
+               MouseLeave="OpenPlaceholder_MouseLeave"
+               VerticalAlignment="Center"
+               HorizontalContentAlignment="Center">
+            <Image Source="/Resources/Images/open-icon.png"/>
+        </Label>
+    </Grid>
+</UserControl>

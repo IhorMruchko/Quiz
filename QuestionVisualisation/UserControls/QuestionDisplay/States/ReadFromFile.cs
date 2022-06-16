@@ -17,9 +17,6 @@
 
         protected override void UpdateContext()
         {
-            Context!.ShowAnswerButton.IsEnabled = false;
-            Context!.WrongAnswerButton.IsEnabled = false;
-            Context!.CorrectAnswerButton.IsEnabled = false;
         }
     }
 }

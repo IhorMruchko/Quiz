@@ -18,9 +18,11 @@ namespace QuestionVisualisation
 
             public static readonly Brush Purple = new SolidColorBrush(Color.FromRgb(124, 49, 204));
 
-            public static readonly Brush LightRed = new SolidColorBrush(Color.FromRgb(245, 73, 73));
+            public static readonly Brush LightRed = new SolidColorBrush(Color.FromRgb(252, 215, 215));
 
             public static readonly Brush Transparent = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
+
+            public static readonly Brush LightGreen = new SolidColorBrush(Color.FromRgb(208, 247, 215));
         }
     }
 }

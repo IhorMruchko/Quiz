@@ -7,16 +7,8 @@
              d:DesignHeight="450" d:DesignWidth="800"
              KeyDown="QuestionDisplay_KeyDown">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-
         <Grid.RowDefinitions>
-            <RowDefinition Height="9*"/>
-            <RowDefinition Height="9*"/>
+            <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
@@ -36,25 +28,5 @@
                    TextAlignment="Center"
                    VerticalAlignment="Center"
                    TextWrapping="Wrap"/>
-
-        <Button x:Name="WrongAnswerButton"
-                Grid.Row="2"
-                Grid.Column="0"
-                Content="Wrong"
-                Click="WrongAnswerButton_Click"/>
-        <Button x:Name="CorrectAnswerButton"
-                Grid.Row="2"
-                Grid.Column="2"
-                Content="Correct"
-                Click="CorrectAnswerButton_Click"/>
-        <Button x:Name="ShowAnswerButton"
-                Grid.Row="2"
-                Grid.Column="1"
-                Content="Show answer"
-                Click="ShowAnswerButton_Click"/>
-        <Button Grid.Row="2"
-                Grid.Column="3"
-                Content="Back"
-                Click="BackButton_Click"/>
     </Grid>
 </UserControl>

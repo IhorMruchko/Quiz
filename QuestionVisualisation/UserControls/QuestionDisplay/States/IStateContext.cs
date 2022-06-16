@@ -5,7 +5,7 @@
     // * transition function
     // * key press event function
 
-    public interface IStateContext 
+    public interface IWindowPage 
     {
         public void ChangeState(QuestionDisplayUserControlState newState);
     }

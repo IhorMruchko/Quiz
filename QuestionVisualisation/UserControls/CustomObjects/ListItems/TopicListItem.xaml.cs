@@ -23,11 +23,7 @@ public partial class TopicListItem : UserControl
     {
         if (e.LeftButton == MouseButtonState.Pressed)
         {
-            QuizizzWindow.SetController<QuestionsDisplayUserControl>(x =>
-            {
-                x.Context = this;
-                x.DisplayQuestions();
-            });
+            QuizizzWindow.SetController(new QuestionsDisplayUserControl(this));
         }
     }
 
@@ -88,7 +84,7 @@ public partial class TopicListItem : UserControl
 
     private void EditIcon_MouseEnter(object sender, MouseEventArgs e)
     {
-        EditIcon.ChangeColors(Constants.Colors.Purple);
+        EditIcon.ChangeColors(Constants.Colors.LightGreen);
     }
 
     private void EditIcon_MouseLeave(object sender, MouseEventArgs e)

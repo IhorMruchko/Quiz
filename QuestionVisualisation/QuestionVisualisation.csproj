@@ -6,7 +6,24 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="MainWindow.xaml~RF5a6eda2.TMP" />
+    <None Remove="Resources\Images\add-icon.png" />
+    <None Remove="Resources\Images\app-icon.png" />
+    <None Remove="Resources\Images\back-icon.png" />
+    <None Remove="Resources\Images\correct-icon.png" />
+    <None Remove="Resources\Images\open-icon.png" />
+    <None Remove="Resources\Images\start-icon.png" />
+    <None Remove="Resources\Images\view-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\add-icon.png" />
+    <Resource Include="Resources\Images\app-icon.png" />
+    <Resource Include="Resources\Images\back-icon.png" />
+    <Resource Include="Resources\Images\correct-icon.png" />
     <Resource Include="Resources\Images\delete-icon.png" />
     <Resource Include="Resources\Images\edit-icon.png" />
+    <Resource Include="Resources\Images\open-icon.png" />
+    <Resource Include="Resources\Images\start-icon.png" />
+    <Resource Include="Resources\Images\view-icon.png" />
   </ItemGroup>
 </Project>

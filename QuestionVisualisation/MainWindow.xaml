@@ -3,21 +3,31 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:buttons="clr-namespace:QuestionVisualisation.UserControls.CustomObjects.Buttons"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="MainWindow" Height="450" Width="800"
-        FontFamily="Cascadia Code"
-        FontSize="15"
+        Title="Quizziz" 
+        Icon="/Resources/Images/app-icon.png"
+        Height="845" Width="745"
+        ResizeMode="NoResize"
+        FontFamily="Cascadia Mono"
+        FontSize="20"
         KeyDown="Window_KeyDown"
         Closing="Window_Closing">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.5*"/>
             <RowDefinition Height="9*"/>
+            <RowDefinition Height="0.9*"/>
         </Grid.RowDefinitions>
-        <Button>Click me</Button>
         <ContentControl x:Name="WindowContent"
-                        Grid.Row="1"
+                        Grid.Row="0"
                         Grid.Column="0"/>
+        <StackPanel Name="LowerBar"
+                    Grid.Row="1" 
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal"/>
+        <Border Grid.Row="1" BorderBrush="DarkGreen" BorderThickness="2" Margin="-10 0 -10 -10"/>
+
+
     </Grid>
 </Window>

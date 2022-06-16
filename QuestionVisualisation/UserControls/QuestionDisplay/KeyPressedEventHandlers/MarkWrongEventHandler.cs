@@ -12,7 +12,6 @@ namespace QuestionVisualisation.UserControls.QuestionDisplay.KeyPressedEventHand
 
         public void OnKeyPressed(QuestionDisplayUserControl window)
         {
-            window.WrongAnswerButton_Click(window.WrongAnswerButton, new RoutedEventArgs());
         }
     }
 }

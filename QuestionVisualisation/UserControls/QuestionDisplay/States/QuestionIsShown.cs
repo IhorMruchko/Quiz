@@ -19,9 +19,6 @@
 
         protected override void UpdateContext()
         {
-            Context!.ShowAnswerButton.IsEnabled = true;
-            Context!.WrongAnswerButton.IsEnabled = false;
-            Context!.CorrectAnswerButton.IsEnabled = false;
             Context!.QuestionPlaceholder.Text = Context!.QuestionManager.SelectedQuestion!.QuestionTitle;
             Context!.AnswerPlaceHolder.Text = string.Empty;
         }

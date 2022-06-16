@@ -10,10 +10,11 @@ namespace QuestionVisualisation.UserControls.CustomObjects.ListItems
 {
     public partial class QuestionListItem : UserControl
     {
-        public QuestionListItem(Question question)
+        public QuestionListItem(QuestionsDisplayUserControl context, Question question)
         {
             Question = question;
             InitializeComponent();
+            Context = context;
             TitleDisplay.Content = Question.QuestionTitle;
         }
 

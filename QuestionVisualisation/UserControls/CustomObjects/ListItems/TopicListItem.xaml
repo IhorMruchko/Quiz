@@ -3,17 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
-             BorderBrush="Black"
-             BorderThickness="1px"
-             Margin="0 0 0 1"
+             mc:Ignorable="d"
              d:DesignHeight="100"
              MinHeight="25" d:DesignWidth="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="9*"/>
-            <ColumnDefinition Width="1.25*"/>
-            <ColumnDefinition Width="1.25*"/>
+            <ColumnDefinition Width="0.75*"/>
+            <ColumnDefinition Width="0.75*"/>
         </Grid.ColumnDefinitions>
         <Label x:Name="TitleDisplay"
                MouseEnter="TitleDisplay_MouseEnter"

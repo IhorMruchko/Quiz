@@ -18,9 +18,6 @@
 
         protected override void UpdateContext()
         {
-            Context!.ShowAnswerButton.IsEnabled = false;
-            Context!.WrongAnswerButton.IsEnabled = true;
-            Context!.CorrectAnswerButton.IsEnabled = true;
         }
 
         private void Mark(bool value)
