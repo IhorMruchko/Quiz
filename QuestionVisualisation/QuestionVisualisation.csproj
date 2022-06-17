@@ -12,6 +12,7 @@
     <None Remove="Resources\Images\back-icon.png" />
     <None Remove="Resources\Images\correct-icon.png" />
     <None Remove="Resources\Images\open-icon.png" />
+    <None Remove="Resources\Images\save-icon.png" />
     <None Remove="Resources\Images\start-icon.png" />
     <None Remove="Resources\Images\view-icon.png" />
   </ItemGroup>
@@ -23,6 +24,7 @@
     <Resource Include="Resources\Images\delete-icon.png" />
     <Resource Include="Resources\Images\edit-icon.png" />
     <Resource Include="Resources\Images\open-icon.png" />
+    <Resource Include="Resources\Images\save-icon.png" />
     <Resource Include="Resources\Images\start-icon.png" />
     <Resource Include="Resources\Images\view-icon.png" />
   </ItemGroup>

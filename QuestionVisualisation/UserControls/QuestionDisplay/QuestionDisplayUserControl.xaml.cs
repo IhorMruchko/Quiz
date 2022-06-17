@@ -1,6 +1,7 @@
 ﻿using QuestionVisualisation.Objects;
 using QuestionVisualisation.Services;
 using QuestionVisualisation.UserControls.CustomObjects.Buttons;
+using QuestionVisualisation.UserControls.CustomObjects.Displayers;
 using QuestionVisualisation.UserControls.QuestionDisplay.KeyPressedEventHandlers;
 using QuestionVisualisation.UserControls.QuestionDisplay.States;
 using System.Collections.Generic;
@@ -14,6 +15,8 @@ namespace QuestionVisualisation.UserControls.QuestionDisplay
     public partial class QuestionDisplayUserControl : UserControl, IWindowPage
     {
         private QuestionDisplayUserControlState _state = new ReadFromFile();
+
+        public QuestionProgressDisplayer QuestionProgressDisplayer { get; set;} = new QuestionProgressDisplayer() { CurrentAmount = 1 };
 
         public RandomizerService QuestionManager { get; set; } = new();
 
@@ -57,7 +60,8 @@ namespace QuestionVisualisation.UserControls.QuestionDisplay
             var backButton = new BackButton();
             var wrongButton = new WrongButton();
             var showButton = new ShowButton();
-            var correctButton = new CorrectButton();            
+            var correctButton = new CorrectButton();
+            QuestionProgressDisplayer.TotalAmount = QuestionManager.LoadedQuesions.Count;
             backButton.MouseDown += window.BackButton_MouseDown;
             wrongButton.MouseDown += WrongAnswerButton_Click;
             showButton.MouseDown += ShowAnswerButton_Click;
@@ -66,11 +70,14 @@ namespace QuestionVisualisation.UserControls.QuestionDisplay
             window.LowerBar.Children.Add(wrongButton);
             window.LowerBar.Children.Add(showButton);
             window.LowerBar.Children.Add(correctButton);
+            Grid.SetColumn(QuestionProgressDisplayer, 2);
+            window.ButtonsGrid.Children.Add(QuestionProgressDisplayer);
         }
 
         public void ConfigureWindowOnEnd(QuizizzWindow window)
         {
             window.LowerBar.Children.Clear();
+            window.ButtonsGrid.Children.RemoveAt(window.ButtonsGrid.Children.Count - 1);
         }
     }
 }

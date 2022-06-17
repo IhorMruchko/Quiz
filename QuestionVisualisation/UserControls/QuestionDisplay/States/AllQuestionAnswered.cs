@@ -16,6 +16,7 @@
 
         protected override void UpdateContext()
         {
+            Context!.QuestionProgressDisplayer.CurrentAmount -= 1;
             Context!.AnswerPlaceHolder.Text = string.Empty;
             Context!.QuestionPlaceholder.Text = Context!.QuestionManager.Result;
             Context!.ChangeState(new ReadFromFile());

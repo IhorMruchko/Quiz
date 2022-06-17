@@ -8,7 +8,8 @@
         FontFamily="Cascadia Code"
         FontSize="24"
         WindowStartupLocation="CenterScreen"
-        Title="Add question" Height="250" Width="800">
+        Title="Add question" Height="250" Width="800"
+        Loaded="Window_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="2.5*"/>
@@ -22,18 +23,16 @@
 
         <StackPanel Grid.ColumnSpan="2">
             <Label Content="Title"
-               VerticalContentAlignment="Center"/>
+                   VerticalContentAlignment="Center"/>
             <TextBox Name="TitleTextBox"
-                     Background="Transparent"
-                     Text="New question"/>
+                     Background="Transparent"/>
         </StackPanel>
         <StackPanel Grid.ColumnSpan="2"
                     Grid.Row="1">
             <Label Content="Answer"
-               VerticalContentAlignment="Center"/>
+                   VerticalContentAlignment="Center"/>
             <TextBox Name="AnswerTextBox"
-                     Background="Transparent"
-                     Text="New answer"/>
+                     Background="Transparent"/>
         </StackPanel>
         <Button x:Name="ConfirmButton"
                 Content="Accept"

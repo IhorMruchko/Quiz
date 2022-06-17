@@ -1,16 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
+﻿using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace QuestionVisualisation.Dialogs
 {
@@ -23,13 +12,13 @@ namespace QuestionVisualisation.Dialogs
 
         public string QuestionTitle
         {
-            get => TitleTextBox.Text;
+            get => TitleTextBox.Text.Trim();
             set => TitleTextBox.Text = value;
         }
 
         public string QuestionAnswer
         {
-            get => AnswerTextBox.Text;
+            get => AnswerTextBox.Text.Trim();
             set => AnswerTextBox.Text = value;
         }
 
@@ -44,6 +33,11 @@ namespace QuestionVisualisation.Dialogs
             {
                 DialogResult = true;
             }
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            TitleTextBox.Focus();
         }
     }
 }

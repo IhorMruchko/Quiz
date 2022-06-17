@@ -49,7 +49,7 @@ namespace QuestionVisualisation.UserControls.QuestionsDisplay
                 var question = new Question()
                 {
                     QuestionTitle = addQuestionDialog.QuestionTitle,
-                    Answer = addQuestionDialog.QuestionAnswer
+                    Answer = addQuestionDialog.QuestionAnswer,
                 };
                 
                 panel.Children.Add(new QuestionListItem(this, question));

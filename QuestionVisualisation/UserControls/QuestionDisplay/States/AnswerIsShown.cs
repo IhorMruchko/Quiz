@@ -28,6 +28,7 @@
                 Context!.QuestionManager.LoadedQuesions.Count == 0
                 ? new AllQuestionAnswered()
                 : new QuestionIsShown());
+            Context!.QuestionProgressDisplayer.CurrentAmount += 1;
         }
     }
 }

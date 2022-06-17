@@ -61,5 +61,10 @@ namespace QuestionVisualisation
             ((IWindowPage)CurrentUserControl).ConfigureWindowOnStart(QuizzWindowInstance);
             QuizzWindowInstance.WindowContent.Content = CurrentUserControl;
         }
+
+        private void SaveButton_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            GetController<TopicDisplayUserControl>()?.OnClose();
+        }
     }
 }
