@@ -25,14 +25,16 @@
             <Label Content="Title"
                    VerticalContentAlignment="Center"/>
             <TextBox Name="TitleTextBox"
-                     Background="Transparent"/>
+                     Background="Transparent"
+                     GotFocus="TitleTextBox_GotFocus"/>
         </StackPanel>
         <StackPanel Grid.ColumnSpan="2"
                     Grid.Row="1">
             <Label Content="Answer"
                    VerticalContentAlignment="Center"/>
             <TextBox Name="AnswerTextBox"
-                     Background="Transparent"/>
+                     Background="Transparent"
+                     GotFocus="TitleTextBox_GotFocus"/>
         </StackPanel>
         <Button x:Name="ConfirmButton"
                 Content="Accept"

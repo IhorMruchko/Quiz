@@ -15,6 +15,7 @@
     <None Remove="Resources\Images\save-icon.png" />
     <None Remove="Resources\Images\start-icon.png" />
     <None Remove="Resources\Images\view-icon.png" />
+    <None Remove="UserControls\CustomObjects\Input\IntInputBox.xaml.cs~RFedd48e4.TMP" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\add-icon.png" />

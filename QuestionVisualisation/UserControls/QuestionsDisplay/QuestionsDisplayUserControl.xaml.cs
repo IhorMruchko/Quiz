@@ -5,8 +5,6 @@ using QuestionVisualisation.Services.IOServices;
 using QuestionVisualisation.UserControls.CustomObjects.Buttons;
 using QuestionVisualisation.UserControls.CustomObjects.ListItems;
 using QuestionVisualisation.UserControls.QuestionDisplay;
-using QuestionVisualisation.UserControls.TopicDisplay;
-using System;
 using System.Collections.Generic;
 using System.Windows.Controls;
 using System.Windows.Input;

@@ -1,4 +1,6 @@
-﻿namespace QuestionVisualisation.Extensions
+﻿using System.Collections.Generic;
+
+namespace QuestionVisualisation.Extensions
 {
     public static class StringExtensions
     {
@@ -8,5 +10,10 @@
                 ? result
                 : 0;
         }
+
+        public static string Join<T>(this IEnumerable<T> enumerate, string connectionSymbol="")
+        {
+            return string.Join(connectionSymbol, enumerate);
+        } 
     }
 }

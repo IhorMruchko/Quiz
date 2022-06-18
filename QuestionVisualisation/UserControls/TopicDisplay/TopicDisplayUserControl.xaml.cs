@@ -1,4 +1,5 @@
-﻿using QuestionVisualisation.Objects;
+﻿using QuestionVisualisation.Dialogs;
+using QuestionVisualisation.Objects;
 using QuestionVisualisation.Services.IOServices;
 using QuestionVisualisation.UserControls.CustomObjects.Buttons;
 using QuestionVisualisation.UserControls.CustomObjects.ListItems;
@@ -61,9 +62,10 @@ namespace QuestionVisualisation.UserControls.TopicDisplay
         private void StartButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             var allQuestions = Topics.SelectMany(t => t.Questions);
-            if (allQuestions.Any())
+            var configureQuizzDialog = new ConfigureQuizzDialog();
+            if (allQuestions.Any() && configureQuizzDialog.ShowDialog() == true)
             {
-                QuizizzWindow.SetController(new QuestionDisplayUserControl(allQuestions));
+                QuizizzWindow.SetController(new QuestionDisplayUserControl(allQuestions.Take(configureQuizzDialog.QuestionTakeAmount)));
             }
         }
 

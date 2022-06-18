@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace QuestionVisualisation.Dialogs
@@ -38,6 +39,11 @@ namespace QuestionVisualisation.Dialogs
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             TitleTextBox.Focus();
+        }
+
+        private void TitleTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            ((TextBox)sender).SelectAll();
         }
     }
 }
