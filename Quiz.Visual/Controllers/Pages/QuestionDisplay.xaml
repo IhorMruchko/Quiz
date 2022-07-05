@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="Quiz.Visual.Controllers.Pages.QuestionDisplay"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:controls="clr-namespace:Quiz.Visual.Controllers.Controls"
+             mc:Ignorable="d" 
+             Height="845" Width="745">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="5*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Margin="0 0 75 0">
+            <controls:ProgressDisplayer x:Name="CurrentQuestion"
+                                        Height="100"
+                                        Width="300"/>
+            <controls:ProgressDisplayer x:Name="TimeRemaining"
+                                        Height="100"
+                                        Width="300"/>
+        </StackPanel>
+        <Label Name="QuestionTitle"
+               VerticalContentAlignment="Center"
+               HorizontalContentAlignment="Center"
+               Grid.Row="1"/>
+        <ContentControl Name="QuestionDisplayer"
+                        Grid.Row="2"
+                        VerticalContentAlignment="Top"
+                        HorizontalContentAlignment="Left"/>
+    </Grid>
+</UserControl>

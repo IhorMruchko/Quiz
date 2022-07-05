@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "lZ/bowT7qEYFYf/V46QXuQyAvUUuQWn91GOnEAYyC6kiH/SDIe5M6fU6Qfg4mVEPYqaj25uke9Ql+avvLGUCmg==",
+  "success": true,
+  "projectFilePath": "E:\\Programming\\C#\\Quiz\\Quiz.Standart\\Quiz.Standart.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\Lenovo\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\Lenovo\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,10 @@
+E:\Programming\C#\Quiz\Quiz.Standart\bin\Debug\netstandard2.0\Quiz.Standart.deps.json
+E:\Programming\C#\Quiz\Quiz.Standart\bin\Debug\netstandard2.0\Quiz.Standart.dll
+E:\Programming\C#\Quiz\Quiz.Standart\bin\Debug\netstandard2.0\Quiz.Standart.pdb
+E:\Programming\C#\Quiz\Quiz.Standart\obj\Debug\netstandard2.0\Quiz.Standart.csproj.AssemblyReference.cache
+E:\Programming\C#\Quiz\Quiz.Standart\obj\Debug\netstandard2.0\Quiz.Standart.GeneratedMSBuildEditorConfig.editorconfig
+E:\Programming\C#\Quiz\Quiz.Standart\obj\Debug\netstandard2.0\Quiz.Standart.AssemblyInfoInputs.cache
+E:\Programming\C#\Quiz\Quiz.Standart\obj\Debug\netstandard2.0\Quiz.Standart.AssemblyInfo.cs
+E:\Programming\C#\Quiz\Quiz.Standart\obj\Debug\netstandard2.0\Quiz.Standart.csproj.CoreCompileInputs.cache
+E:\Programming\C#\Quiz\Quiz.Standart\obj\Debug\netstandard2.0\Quiz.Standart.dll
+E:\Programming\C#\Quiz\Quiz.Standart\obj\Debug\netstandard2.0\Quiz.Standart.pdb

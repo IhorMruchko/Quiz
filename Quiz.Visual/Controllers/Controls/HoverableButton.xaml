@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="Quiz.Visual.Controllers.Controls.HoverableButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" 
+             d:DesignHeight="100" d:DesignWidth="100">
+    <Grid>
+        <Label x:Name="PicturePlaceholder"  
+               MouseEnter="PicturePlaceholder_OnMouseEnter"
+               MouseLeave="PicturePlaceholder_OnMouseLeave"
+               VerticalContentAlignment="Center"
+               HorizontalContentAlignment="Center">
+                <Image x:Name="ImageContainer"/>
+        </Label>
+    </Grid>
+</UserControl>

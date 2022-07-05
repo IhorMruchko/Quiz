@@ -1,0 +1,46 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Controllers\Dialogs\ConfigureTopicDialog.xaml.cs~RFe8976f2.TMP" />
+    <None Remove="Resources\Images\add-question-icon.png" />
+    <None Remove="Resources\Images\add-topic-icon.png" />
+    <None Remove="Resources\Images\checked-icon.png" />
+    <None Remove="Resources\Images\finish-icon.png" />
+    <None Remove="Resources\Images\next-icon.png" />
+    <None Remove="Resources\Images\previous-icon.png" />
+    <None Remove="Resources\Images\unchcked-icon.png" />
+  </ItemGroup>  
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Quiz.Base\Quiz.Base.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\add-icon-filled.png" />
+    <Resource Include="Resources\Images\add-icon.png" />
+    <Resource Include="Resources\Images\add-question-icon.png" />
+    <Resource Include="Resources\Images\add-topic-icon.png" />
+    <Resource Include="Resources\Images\app-icon.png" />
+    <Resource Include="Resources\Images\back-icon.png" />
+    <Resource Include="Resources\Images\checked-icon.png" />
+    <Resource Include="Resources\Images\correct-icon.png" />
+    <Resource Include="Resources\Images\delete-icon.png" />
+    <Resource Include="Resources\Images\edit-icon-filled.png" />
+    <Resource Include="Resources\Images\edit-icon.png" />
+    <Resource Include="Resources\Images\finish-icon.png" />
+    <Resource Include="Resources\Images\next-icon.png" />
+    <Resource Include="Resources\Images\open-icon.png" />
+    <Resource Include="Resources\Images\previous-icon.png" />
+    <Resource Include="Resources\Images\save-icon.png" />
+    <Resource Include="Resources\Images\start-icon-filled.png" />
+    <Resource Include="Resources\Images\start-icon.png" />
+    <Resource Include="Resources\Images\unchcked-icon.png" />
+    <Resource Include="Resources\Images\view-icon.png" />
+  </ItemGroup>
+</Project>
