@@ -6,5 +6,4 @@ Quiz.Visual/obj
 Quiz.Visual/bin
 .gitattributes
 .gitignore
-*csproj.user
-*.csproj
+*.user
