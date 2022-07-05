@@ -4,6 +4,8 @@ Quiz.Base/obj
 Quiz.Base/bin
 Quiz.Visual/obj
 Quiz.Visual/bin
+Quiz.Standart/obj
+Quiz.Standart/bin
 .gitattributes
 .gitignore
 *.user
